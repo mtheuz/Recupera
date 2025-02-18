@@ -8,11 +8,11 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 class UserModel(Base):
     __tablename__ = 'users'
     __table_args__ = {'extend_existing': True}
-
+    
     nome: Mapped[str] = mapped_column(String(50), nullable=False)
     username: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     password: Mapped[str] = mapped_column(String(150), nullable=False)
-    cpf: Mapped[str] = mapped_column(String(14), unique=True, nullable=False)
+    cpf: Mapped[str] = mapped_column(String(14), unique=True, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now)
     
 

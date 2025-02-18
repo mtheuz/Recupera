@@ -1,8 +1,7 @@
 from fastapi import APIRouter
 from app.controllers.user_controller import router as user_router
-from app.controllers.voo_controller import router as voo_controller
 from app.controllers.auth_controller import router as auth_controller
-from app.controllers.passagem_controller import router as passagem_controller
+
 
 api_router = APIRouter()
 

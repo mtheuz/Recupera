@@ -11,7 +11,7 @@ export const Button = ({ name, className, type = "submit" }: Props) => {
     <button
       type={type}
       className={clsx(
-        "flex items-center justify-center bg-[#235347] w-[454px] h-[50px] mt-5 rounded-lg text-white hover:scale-105 duration-300 cursor-pointer",
+        "flex items-center justify-center bg-[#235347] w-[454px] h-[50px]  rounded-lg text-white hover:scale-105 duration-300 cursor-pointer",
         className
       )}
     >

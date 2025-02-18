@@ -1,8 +1,6 @@
 from app.config.connection import engine
 from asyncio import run
 from app.utils.models import Base
-from app.models.passagem_model import PassagemModel  # Importe seus modelos
-from app.models.voo_model import VooModel  # Importe seus modelos
 from app.models.user_model import UserModel  # Importe seus modelos
 from datetime import datetime
 from app.security.security import get_password_hash
