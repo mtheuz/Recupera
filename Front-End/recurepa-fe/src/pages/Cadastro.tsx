@@ -6,6 +6,7 @@ import axios from "axios";
 
 function Cadastro() {
   const [username, setUsername] = useState("");
+  const [nome, setName] = useState("");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -18,7 +19,7 @@ function Cadastro() {
     setError(""); 
     setSuccess(""); 
 
-    if (!username || !email || !password || !confirmPassword) {
+    if (!nome || !username || !email || !password || !confirmPassword) {
       setError("Por favor, preencha todos os campos.");
       return;
     }
@@ -33,7 +34,7 @@ function Cadastro() {
       return;
     }
 
-    const data = { username, email, password };
+    const data = {nome, username, email, password };
 
     try {
       await axios.post("http://127.0.0.1:8001/user/", data);
@@ -67,6 +68,15 @@ function Cadastro() {
         <form onSubmit={handleSubmit} className="p-5">
           <h1 className="text-5xl font-semibold">Faça seu cadastro</h1>
 
+          <Input
+            className="mt-5"
+            placeholder="Digite seu nome"
+            type="text"
+            value={nome}
+            onChange={(e) => setName(e.target.value)}
+          >
+            <User2 color="#DAF1DE" />
+          </Input>
           <Input
             className="mt-5"
             placeholder="Digite seu username"

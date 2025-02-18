@@ -9,6 +9,11 @@ class UserSchema(BaseModel):
         examples=['user_1'],
         max_length=50
     )]
+    email: Annotated[str, Field(
+        description='username do usuário',
+        examples=['example@email.com'],
+        max_length=50
+    )]
     
     nome: Annotated[str, Field(
         description='Nome do usuário',
@@ -16,11 +21,6 @@ class UserSchema(BaseModel):
         max_length=50
     )]
     
-    cpf: Annotated[str, Field(
-        description='CPF do usuário',
-        examples=['123.456.789-00'],
-        max_length=14
-    )]
     
     password: Annotated[str, Field(
         description='password do usuário',
@@ -44,11 +44,6 @@ class UserSchemaPublic(BaseModel):
         max_length=50
     )]
     
-    cpf: Annotated[str, Field(
-        description='CPF do usuário',
-        examples=['123.456.789-00'],
-        max_length=14
-    )]
     
 class UserSchemaList(BaseModel):
     users: List[UserSchemaPublic]

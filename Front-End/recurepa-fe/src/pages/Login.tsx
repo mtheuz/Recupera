@@ -2,55 +2,16 @@ import { Mail, RectangleEllipsis } from "lucide-react";
 import { Input } from "../ui/components/Input";
 import { Button } from "../ui/components/Button";
 import { useState } from "react";
-import axios from "axios";
+import { useAuth } from '../hooks/useAuth';
 
 function Login() {
-  const [email, setEmail] = useState('')
+  const { login, error } = useAuth();
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState("");
-  const [user, setUser] = useState("");
-  const handleSubmit = async () => {
-    if (!email || !password) {
-      setError("Por favor, preencha todos os campos.");
-      return;
-    }
-  
-    const data = new URLSearchParams({ email, password });
-  
-    try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/auth/token",
-        data,
-        {
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        }
-      );
-  
-      const { access_token: token } = response.data;
-  
-      if (token) {
-        localStorage.setItem("token", token); 
-      }
-  
-      try {
-        const userResponse = await axios.get("http://127.0.0.1:8000/user/", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-  
-        if (userResponse.data) {
-          localStorage.setItem("user", JSON.stringify(userResponse.data));
-          setUser(userResponse.data);
-        }
-      } catch (userError) {
-        console.error("Erro ao obter informações do usuário:", userError);
-        setError("Falha ao carregar informações do usuário.");
-      }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-      setError("Credenciais inválidas ou erro no servidor.");
-    }
-  };
-  
+  const handleSubmit = async (e : React.FormEvent) => {
+    e.preventDefault()
+    await login(username,password)
+  }
   
   return (
     <section className="flex w-screen">
@@ -65,7 +26,7 @@ function Login() {
       <div className="flex items-center justify-center bg-[#DAF1DE]  w-2/2 h-screen ">
         <form onSubmit={handleSubmit}  className="p-5  ">
           <h1 className="text-5xl font-semibold">Faça login</h1>
-          <Input className="mt-10" placeholder="Digite seu e-mail" type="email" value={email} onChange={ (e) => setEmail(e.target.value)}>
+          <Input className="mt-10" placeholder="Digite seu e-mail" type="text" value={username} onChange={ (e) => setUsername(e.target.value)}>
             <Mail color="#DAF1DE" />
           </Input>
 
@@ -75,6 +36,7 @@ function Login() {
           <Input  placeholder="Digite sua senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} >
             <RectangleEllipsis color="#DAF1DE" />
           </Input>
+          {error && <p style={{ color: "red" }}>{error}</p>}
           <Button className="mt-10" name="Logar"/>
           <p className="mt-10 text-sm text-center text-[#235347]">
             Não possui uma conta?{" "}

@@ -10,6 +10,7 @@ class UserModel(Base):
     __table_args__ = {'extend_existing': True}
     
     nome: Mapped[str] = mapped_column(String(50), nullable=False)
+    email: Mapped[str] = mapped_column(String(50), nullable=False)
     username: Mapped[str] = mapped_column(String(50), nullable=False, unique=True)
     password: Mapped[str] = mapped_column(String(150), nullable=False)
     cpf: Mapped[str] = mapped_column(String(14), unique=True, nullable=True)
