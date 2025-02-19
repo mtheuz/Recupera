@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { UserCircle } from "lucide-react";
+import { UserCircle, } from "lucide-react";
+import Dropdown from "./Dropdown";
 
 function Header() {
     const { user, checkAuth } = useAuth();
-
+    const options = [
+        { label: "Opção 1", href: "#" },
+        { label: "Opção 2", href: "#" },
+        { label: "Opção 3", href: "#" },
+      ];
   useEffect(() => {
     checkAuth(); 
   }, []);
@@ -23,7 +28,10 @@ function Header() {
                     <a className="shadow-2xl border rounded-md border-[#C0D0C3] px-8 py-1 hover:scale-105 duration-300 cursor-pointer" href="/login">Login</a>
                     </>
                     ) : (
-                    <UserCircle size={40}/>
+                    <>
+                    
+                    <Dropdown buttonLabel={<UserCircle size={40}/>} options={options}/>
+                    </>
                 )
                     
                 }
