@@ -9,6 +9,9 @@ interface CadastroData {
   email: string;
   password: string;
 }
+interface ErrorResponseData {
+  detail?: string;
+}
 
 export const useCadastro = () => {
   const [error, setError] = useState<string | null>(null);
@@ -47,12 +50,12 @@ export const useCadastro = () => {
         window.location.href = "/login"; // Redireciona para login
       }, 2000);
     } catch (err) {
-      if ((err as AxiosError).response && (err as AxiosError).response?.data) {
+      const axiosError = err as AxiosError<ErrorResponseData>;
+    if (axiosError.response && axiosError.response.data) {
         toast.error(
-          (err as AxiosError).response?.data.detail ||
-            "Cadastro falhou. Verifique suas credenciais."
-        );
-      } else {
+        axiosError.response.data.detail || "Cadastro falhou. Verifique suas credenciais."
+    );
+  } else {
         toast.error("Erro de rede. Tente novamente mais tarde.");
       }
     }

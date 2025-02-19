@@ -1,5 +1,5 @@
 // useAuth.ts
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import toast from 'react-hot-toast';
@@ -49,6 +49,8 @@ export const useAuth = () => {
             localStorage.setItem("user", JSON.stringify(userResponse.data));
             setUser(userResponse.data);
             toast.success("Login realizado com sucesso!");
+            window.location.href = "/"
+
           }
         } catch (userError) {
           console.error("Erro ao obter informações do usuário:", userError);
@@ -68,8 +70,42 @@ export const useAuth = () => {
     localStorage.removeItem("user");
     setUser(null);
     setError(null);
-    toast.success("Logout realizado com sucesso!" );
+    toast.success("Logout realizado com sucesso!");
   };
 
-  return { user, error, login, logout };
+  // Função para verificar se o usuário está logado
+  const checkAuth = async () => {
+    const token = Cookies.get('authToken');
+    if (!token) {
+      setUser(null); // Não há token, então o usuário não está logado
+      return false;
+    }
+
+    try {
+      // Verifica se o token é válido buscando os dados do usuário
+      const userResponse = await axios.get<User>("http://127.0.0.1:8001/user/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (userResponse.data) {
+        setUser(userResponse.data); // Define o usuário como logado
+        return true;
+      }
+    } catch (authError) {
+      console.error("Erro ao verificar autenticação:", authError);
+      toast.error("Sessão expirada ou inválida.");
+      Cookies.remove('authToken'); // Remove o token inválido
+      localStorage.removeItem("user");
+      setUser(null);
+    }
+
+    return false;
+  };
+
+  // Verificar autenticação ao inicializar o hook
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
+  return { user, error, login, logout, checkAuth };
 };
