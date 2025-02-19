@@ -1,8 +1,9 @@
-import { Mail, RectangleEllipsis } from "lucide-react";
+import { AtSign, Lock } from "lucide-react";
 import { Input } from "../ui/components/Input";
 import { Button } from "../ui/components/Button";
 import { useState } from "react";
 import { useAuth } from '../hooks/useAuth';
+import { Toaster } from "react-hot-toast";
 
 function Login() {
   const { login, error } = useAuth();
@@ -15,6 +16,11 @@ function Login() {
   
   return (
     <section className="flex w-screen">
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          
+        }}/>
       <div className="bg-[#061A23] md:w-[840px] h-screen">
         <img
           className="hidden md:flex absolute  w-[580px] h-auto max-w-none 2xl:w-[680px]"
@@ -27,14 +33,14 @@ function Login() {
         <form onSubmit={handleSubmit}  className="p-5  ">
           <h1 className="text-5xl font-semibold">Faça login</h1>
           <Input className="mt-10" placeholder="Digite seu e-mail" type="text" value={username} onChange={ (e) => setUsername(e.target.value)}>
-            <Mail color="#DAF1DE" />
+            <AtSign color="#DAF1DE" />
           </Input>
 
           <a className="flex justify-end w-full my-2 text-sm text-end cursor-pointer text-[#235347]">
             Esqueceu sua senha?
           </a>
           <Input  placeholder="Digite sua senha" type="password" value={password} onChange={ (e) => setPassword(e.target.value)} >
-            <RectangleEllipsis color="#DAF1DE" />
+            <Lock color="#DAF1DE" />
           </Input>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <Button className="mt-10" name="Logar"/>
