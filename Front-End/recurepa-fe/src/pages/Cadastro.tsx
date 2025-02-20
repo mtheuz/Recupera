@@ -43,9 +43,9 @@ function Cadastro() {
           }
           className="p-5"
         >
-          <h1 className="text-5xl font-semibold">Faça seu cadastro</h1>
+          <h1 className="text-5xl font-semibold text-[#061a23]">Faça seu cadastro</h1>
           <Input
-            className="mt-5"
+            className="mt-10"
             placeholder="Digite seu nome"
             type="text"
             value={nome}
@@ -90,8 +90,16 @@ function Cadastro() {
             <ShieldCheck color="#DAF1DE" />
           </Input>
           <Button className="mt-5" name="Cadastre-se" />
+          <p className="mt-10 text-sm text-center text-[#235347]">
+            Já posui uma conta?{" "}
+            <a href="/login" className="font-bold cursor-pointer">
+              Faça o login!
+            </a>
+          </p>
         </form>
+        
       </div>
+      
     </section>
   );
 }

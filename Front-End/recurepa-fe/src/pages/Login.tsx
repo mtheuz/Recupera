@@ -31,7 +31,7 @@ function Login() {
 
       <div className="flex items-center justify-center bg-[#DAF1DE]  w-2/2 h-screen ">
         <form onSubmit={handleSubmit}  className="p-5  ">
-          <h1 className="text-5xl font-semibold">Faça login</h1>
+          <h1 className="text-5xl font-semibold text-[#061a23]">Faça login</h1>
           <Input className="mt-10" placeholder="Digite seu e-mail" type="text" value={username} onChange={ (e) => setUsername(e.target.value)}>
             <AtSign color="#DAF1DE" />
           </Input>
