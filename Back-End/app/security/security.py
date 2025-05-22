@@ -28,7 +28,6 @@ def verify_password(plain_password: str, hashed_password: str):
 def create_acess_token(data_payload: dict):
     to_encode_copy = data_payload.copy()
     expire = datetime.now(tz=ZoneInfo('UTC')) + timedelta(minutes=settings.TOKEN_EXPIRE_MIN)
-    
     to_encode_copy.update({'exp':expire})
     encode_jwt = encode(to_encode_copy,settings.SECRET_KEY,algorithm=settings.ALGORITHM)
     

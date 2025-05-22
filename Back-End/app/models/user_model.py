@@ -15,5 +15,6 @@ class UserModel(Base):
     password: Mapped[str] = mapped_column(String(150), nullable=False)
     cpf: Mapped[str] = mapped_column(String(14), unique=True, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=datetime.now)
+    objects = relationship("ObjectModel", back_populates="usuario")
     
 

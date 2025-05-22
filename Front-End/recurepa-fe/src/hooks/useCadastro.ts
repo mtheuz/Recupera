@@ -45,7 +45,13 @@ export const useCadastro = () => {
 
     try {
       await axios.post("http://127.0.0.1:8001/user/", data);
-      toast.success("Cadastro realizado com sucesso! Redirecionando...");
+      toast.success("Cadastro realizado com sucesso! Redirecionando...",{
+        style:{
+          width: '400px', 
+          padding: '16px', 
+          textAlign: 'center', 
+        }
+      });
       setTimeout(() => {
         window.location.href = "/login"; // Redireciona para login
       }, 2000);
