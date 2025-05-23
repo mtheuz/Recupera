@@ -56,7 +56,7 @@ function ObjectItem({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-2xl w-full max-w-2xl outline-none">
+        <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#C0D0C3] p-6 rounded-xl shadow-2xl w-full max-w-2xl outline-none">
           <div className="flex justify-between">
             <h2 id="modal-modal-title" className="text-2xl font-bold text-[#235347] mb-4">
               {title}
@@ -72,7 +72,7 @@ function ObjectItem({
             <span className="font-bold">Local: </span>{local}
           </p>
           <p className="text-sm text-gray-500 mt-2 mb-4">Publicado em: {date}</p>
-              <Button onClick={handleClose}  variant="contained" className="flex justify-ce roundend-md !bg-[#235347] hover:!bg-[#1b4036]" >
+              <Button onClick={handleClose}  variant="contained" className="flex justify-ce roundend-md !bg-[#235347] hover:!bg-[#1b4036] w-full" >
                 Entrar em contato
               </Button>
           <div className="flex justify-end mt-4">

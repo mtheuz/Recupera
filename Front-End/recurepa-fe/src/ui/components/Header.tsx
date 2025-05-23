@@ -4,6 +4,7 @@ import { User, MessageCircle, Home, Bell } from "lucide-react";
 import Dropdown from "./Dropdown";
 import { Box, Button, Modal, Typography, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 const CustomModal = ({
   open,
@@ -18,44 +19,65 @@ const CustomModal = ({
     aria-labelledby="modal-title"
     aria-describedby="modal-description"
   >
-    <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-2xl w-full max-w-2xl outline-none">
-      <div className="flex justify-between items-center mb-4">
-        <Typography
-          id="modal-title"
-          variant="h5"
-          className="text-[#235347] font-bold"
-        >
-          SDSFD
-        </Typography>
-        <IconButton onClick={handleClose}>
-          <CloseIcon sx={{ color: "#235347" }} />
-        </IconButton>
-      </div>
-      <div className="flex">
-        <img
-          src="/default-image.jpg"
-          alt="Imagem de exemplo"
-          className="w-full h-[186px] object-cover object-center"
-        />
-        <Typography id="modal-description" className="text-gray-700 mb-2">
-          <strong>Descrição:</strong>
-        </Typography>
-        <Typography className="text-gray-700 mb-2">
-          <strong>Local:</strong>
-        </Typography>
-        <Typography className="text-sm text-gray-500 mb-4">
-          Publicado em:
-        </Typography>
-      </div>
+    <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#C0D0C3] p-8 rounded-xl shadow-2xl w-full max-w-4xl outline-none">
+  <div className="flex justify-between items-center mb-4">
+    <h1
+     
+      className="flex text-[#235347] font-bold text-2xl "
+    >
+      Cadastre um achado
+    </h1>
+    <IconButton onClick={handleClose}>
+      <CloseIcon sx={{ color: "#235347" }} />
+    </IconButton>
+  </div>
 
-      <Button
-        onClick={handleClose}
-        variant="contained"
-        className="!bg-[#235347] hover:!bg-[#1b4036] rounded-md"
-      >
-        Entrar em contato
-      </Button>
-    </Box>
+  <div className="flex gap-5 mb-8">
+    <label className="w-1/2 h-[200 px] flex flex-col justify-center items-center bg-[#D9D9D9] rounded-md cursor-pointer">
+      <CloudUploadIcon className="text-[#235347] text-6xl" />
+      <Typography className="text-[#235347]">Upload Imagem</Typography>
+      <input type="file" className="hidden" />
+    </label>
+
+    {/* Formulário */}
+    <div className="flex flex-col bg-[#AEBFB1] rounded-md p-5 gap-2">
+      <input
+        placeholder="Título"
+        className="bg-[#D9D9D9] rounded-md px-2 py-1 text-[#235347] font-semibold"
+      />
+      <div className="flex gap-2">
+        
+        <input
+          placeholder="Horário"
+          className="bg-[#D9D9D9] rounded-md px-2 py-1 w-1/2 text-[#235347] font-semibold"
+        />
+        <input
+          placeholder="Data"
+          className="bg-[#D9D9D9] rounded-md px-2 py-1 w-1/2 text-[#235347] font-semibold"
+        />
+      </div>
+      <div className="flex gap-2">
+        <input
+          placeholder="Categoria"
+          className="bg-[#D9D9D9] rounded-md px-2 py-1 w-full text-[#235347] font-semibold"
+        />
+      </div>
+      <textarea
+        placeholder="Descrição"
+        className="bg-[#D9D9D9] rounded-md px-2 py-1 h-20 resize-none text-[#235347] font-semibold"
+      />
+    </div>
+  </div>
+
+  <Button
+    onClick={handleClose}
+    variant="contained"
+    className="!bg-[#235347] hover:!bg-[#1b4036] rounded-md  w-full text-[#235347] font-semibold"
+  >
+    Cadastrar
+  </Button>
+</Box>
+
   </Modal>
 );
 
